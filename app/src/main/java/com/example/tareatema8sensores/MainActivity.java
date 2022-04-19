@@ -1,5 +1,6 @@
 package com.example.tareatema8sensores;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,6 +51,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 Toast.makeText(MainActivity.this, "Toast " + listadoSensores.get(position).getName()+ " con valores: " + valorSensor, Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
+        // Tipo de sensor == Sensor.TYPE....
+        Log.d("Sensor id: " , "" + listadoSensores.get(1).getType());
 
 
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
