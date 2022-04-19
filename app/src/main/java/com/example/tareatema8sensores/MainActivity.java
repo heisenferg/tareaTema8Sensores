@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -23,15 +24,16 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements SensorEventListener {
+public class MainActivity extends AppCompatActivity  {
 
     ListView listaSensores;
+    TextView datos;
     SensorManager sensorManager;
     ArrayList<String> sensoresArray = new ArrayList<String>();
-    String nombreSensor;
-    String valorSensor;
+    public static String nombreSensor;
+    public static String valorSensor;
     Sensor sensor;
-    int sensorType;
+    public static int sensorType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +44,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         listaSensores.setBackgroundColor(Color.rgb(124,157,173));
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         List<Sensor> listadoSensores = sensorManager.getSensorList(Sensor.TYPE_ALL);
-
+        datos = findViewById(R.id.textViewDatosSensor);
 
         listarSensores(listadoSensores);
 
         listaSensores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                sensorType = listadoSensores.get(position).getType();
-                Toast.makeText(MainActivity.this, "Toast " + listadoSensores.get(position).getName()+ " con valores: " + valorSensor, Toast.LENGTH_SHORT).show();
+                DatosSensor.sensorType = listadoSensores.get(position).getType();
+                nombreSensor = listadoSensores.get(position).getName();
+                Toast.makeText(MainActivity.this, listadoSensores.get(position).getName()+ "." , Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this, DatosSensor.class);
+                startActivity(i);
             }
         });
 
@@ -60,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         Log.d("Sensor id: " , "" + listadoSensores.get(1).getType());
 
 
-        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
 
     }
@@ -82,43 +86,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
 
-    @Override
-    public void onSensorChanged(SensorEvent event) {
 
-        //Acelerómetro
-        if (sensorType == 0) {
-            float x,y,z;
-            x = event.values[0];
-            y = event.values[1];
-            z = event.values[2];
-            valorSensor = "X: " + x + " | Y: " + y + " | Z: " + z;
-
-        }
-
-    }
-
-    /**
-     * El método onAccuracyChanged() es invocado cuando un sensor cambia su precisión
-     * Parámetros:
-     * - Sensor sensor: referencia al objeto de tipo Sensor que ha cambiado de precisión
-     * - int accuracy: la nueva precisión del sensor
-     */
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        sensorManager.unregisterListener(this);
-    }
 
 }
