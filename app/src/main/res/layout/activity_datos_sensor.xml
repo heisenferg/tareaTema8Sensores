@@ -10,7 +10,7 @@
         android:id="@+id/textViewDatosInfo"
         android:layout_width="265dp"
         android:layout_height="217dp"
-        android:text="TextView"
+        android:text="No hay datos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
