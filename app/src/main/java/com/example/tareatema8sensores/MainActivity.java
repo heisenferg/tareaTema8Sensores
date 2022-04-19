@@ -9,8 +9,10 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     ListView listaSensores;
     SensorManager sensorManager;
     ArrayList<String> sensoresArray = new ArrayList<String>();
+    String nombreSensor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
         List<Sensor> listadoSensores = sensorManager.getSensorList(Sensor.TYPE_ALL);
 
         listarSensores(listadoSensores);
+
+        listaSensores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, "Toast " + listadoSensores.get(position).getName(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
@@ -42,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         Log.w("Cantidad total de sensores: ", "" + cantidadSensores);
 
         for (int i = 0; i < listadoSensores.size(); i++) {
-            String nombreSensor = listadoSensores.get(i).getName();
+            nombreSensor = listadoSensores.get(i).getName();
             sensoresArray.add("Sensor " + i + ": " + nombreSensor.toUpperCase());
             adaptador = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, sensoresArray);
             listaSensores.setAdapter(adaptador);
