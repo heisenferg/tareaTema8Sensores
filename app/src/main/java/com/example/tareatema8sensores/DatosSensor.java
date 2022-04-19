@@ -45,7 +45,9 @@ public class DatosSensor extends AppCompatActivity implements SensorEventListene
             if (sensorType==i){
                 sensor = sensorManager.getDefaultSensor(i);
 
-                if (sensorType == 1 || sensorType==4 || sensorType==9 || sensorType==2 || sensorType==10 || sensorType==11 || sensorType==14 || sensorType==15 || sensorType==16){
+                if (sensorType == 1 || sensorType==4 || sensorType==9 || sensorType==2 ||
+                        sensorType==10 || sensorType==11 || sensorType==14 || sensorType==15
+                        || sensorType==16  || sensorType==20){
                     variables  = 3;
                 }else{
                     variables =1;
@@ -62,7 +64,7 @@ public class DatosSensor extends AppCompatActivity implements SensorEventListene
                 if (sensorType == 2){
                     medidas = " microTeslas";
                 }
-                if (sensorType == 8){
+                if (sensorType == 8 || sensorType == 5){
                     medidas = " centímetros.";
                 }
                 if (sensorType == 12){
