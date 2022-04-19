@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity  {
         listaSensores.setBackgroundColor(Color.rgb(124,157,173));
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         List<Sensor> listadoSensores = sensorManager.getSensorList(Sensor.TYPE_ALL);
-        datos = findViewById(R.id.textViewDatosSensor);
 
         listarSensores(listadoSensores);
 
