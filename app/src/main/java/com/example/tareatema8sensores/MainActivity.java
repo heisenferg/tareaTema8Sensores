@@ -8,6 +8,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listaSensores = findViewById(R.id.listview);
-        listaSensores.setBackgroundColor(Color.GRAY);
+        listaSensores.setBackgroundColor(Color.rgb(50,186,251));
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         List<Sensor> listadoSensores = sensorManager.getSensorList(Sensor.TYPE_ALL);
 
@@ -42,10 +43,12 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < listadoSensores.size(); i++) {
             String nombreSensor = listadoSensores.get(i).getName();
-            sensoresArray.add("Sensor " + i + ": " + nombreSensor);
+            sensoresArray.add("Sensor " + i + ": " + nombreSensor.toUpperCase());
             adaptador = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, sensoresArray);
             listaSensores.setAdapter(adaptador);
 
         }
     }
+
+
 }
