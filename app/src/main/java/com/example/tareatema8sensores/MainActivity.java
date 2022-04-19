@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     String nombreSensor;
     String valorSensor;
     Sensor sensor;
+    int sensorType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         listaSensores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                sensorType = listadoSensores.get(position).getType();
                 Toast.makeText(MainActivity.this, "Toast " + listadoSensores.get(position).getName()+ " con valores: " + valorSensor, Toast.LENGTH_SHORT).show();
             }
         });
@@ -82,14 +84,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        float x,y,z;
 
-        x = event.values[0];
-        y = event.values[1];
-        z = event.values[2];
+        //Acelerómetro
+        if (sensorType == 0) {
+            float x,y,z;
+            x = event.values[0];
+            y = event.values[1];
+            z = event.values[2];
+            valorSensor = "X: " + x + " | Y: " + y + " | Z: " + z;
 
-        String valoresString = "X: " + x + " | Y: " + y + " | Z: " + z;
-        valorSensor = valoresString;
+        }
+
     }
 
     /**
