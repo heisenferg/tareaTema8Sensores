@@ -40,15 +40,20 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         List<Sensor> listadoSensores = sensorManager.getSensorList(Sensor.TYPE_ALL);
 
+
         listarSensores(listadoSensores);
 
         listaSensores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Toast.makeText(MainActivity.this, "Toast " + listadoSensores.get(position).getName()+ " con valores: " + valorSensor, Toast.LENGTH_SHORT).show();
             }
         });
+
+
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+
     }
 
 
