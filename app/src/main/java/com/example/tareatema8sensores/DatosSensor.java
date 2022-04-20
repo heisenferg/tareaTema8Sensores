@@ -44,39 +44,43 @@ public class DatosSensor extends AppCompatActivity implements SensorEventListene
         for (int i = 1; i<MAXIMOSENSORES; i++){
             if (sensorType==i){
                 sensor = sensorManager.getDefaultSensor(i);
+                averiguarUnidades();
 
-                if (sensorType == 1 || sensorType==4 || sensorType==9 || sensorType==2 ||
-                        sensorType==10 || sensorType==11 || sensorType==14 || sensorType==15
-                        || sensorType==16  || sensorType==20){
-                    variables  = 3;
-                }else{
-                    variables =1;
-                }
-                if (sensorType == 13 || sensorType == 7){
-                    medidas = " ºC";
-                }
-                if (sensorType == 9 || sensorType == 1 || sensorType == 10 || sensorType == 35){
-                    medidas = " m/s2";
-                }
-                if (sensorType == 6){
-                    medidas = " milibares";
-                }
-                if (sensorType == 2){
-                    medidas = " microTeslas";
-                }
-                if (sensorType == 8 || sensorType == 5){
-                    medidas = " centímetros.";
-                }
-                if (sensorType == 12){
-                    medidas = " %.";
-                }
-                if (sensorType == 19){
-                    medidas = " pasos.";
-                }
             }
         }
 
 
+    }
+
+    public void averiguarUnidades(){
+        if (sensorType == 1 || sensorType==4 || sensorType==9 || sensorType==2 ||
+                sensorType==10 || sensorType==11 || sensorType==14 || sensorType==15
+                || sensorType==16  || sensorType==20){
+            variables  = 3;
+        }else{
+            variables =1;
+        }
+        if (sensorType == 13 || sensorType == 7){
+            medidas = " ºC";
+        }
+        if (sensorType == 9 || sensorType == 1 || sensorType == 10 || sensorType == 35){
+            medidas = " m/s2";
+        }
+        if (sensorType == 6){
+            medidas = " milibares";
+        }
+        if (sensorType == 2){
+            medidas = " microTeslas";
+        }
+        if (sensorType == 8 || sensorType == 5){
+            medidas = " centímetros.";
+        }
+        if (sensorType == 12){
+            medidas = " %.";
+        }
+        if (sensorType == 19){
+            medidas = " pasos.";
+        }
     }
 
     @Override

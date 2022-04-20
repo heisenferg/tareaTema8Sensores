@@ -20,8 +20,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="323dp"
-        android:layout_height="45dp"
+        android:layout_width="322dp"
+        android:layout_height="59dp"
         android:shadowColor="#8A2525"
         android:text="Lista de sensores del dispositivo:"
         android:textSize="20sp"
